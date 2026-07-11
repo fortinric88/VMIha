@@ -1,37 +1,70 @@
 title: VMI Ventilairsec
 views:
-  - title: Ventilation
-    path: vmi
+  - title: Dashboard
+    path: vmi-ventilairsec
     icon: mdi:fan
     cards:
+      - type: markdown
+        title: Ventilairsec
+        content: >-
+          ## Tableau de bord VMI Ventilairsec
+          Vue inspirée du plugin Jeedom avec l’état courant, les commandes de pilotage et l’historique des mesures.
+
       - type: entities
         title: État principal
+        show_header_toggle: false
         entities:
-          - sensor.vmi_temperature
-          - sensor.vmi_humidity
-          - sensor.vmi_co2
-          - select.vmi_mode
-          - number.vmi_setpoint
+          - entity: sensor.vmi_temperature
+            name: Température
+          - entity: sensor.vmi_humidity
+            name: Humidité
+          - entity: sensor.vmi_co2
+            name: CO2
+          - entity: select.vmi_mode
+            name: Mode de ventilation
+          - entity: number.vmi_setpoint
+            name: Consigne de température
+
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            title: Température
+            entity: sensor.vmi_temperature
+            min: 10
+            max: 35
+            severity:
+              green: 18
+              yellow: 24
+              red: 30
+
+          - type: gauge
+            title: Humidité
+            entity: sensor.vmi_humidity
+            min: 0
+            max: 100
+            severity:
+              green: 40
+              yellow: 60
+              red: 80
 
       - type: gauge
-        title: Température
-        entity: sensor.vmi_temperature
-        min: 10
-        max: 35
+        title: CO2
+        entity: sensor.vmi_co2
+        min: 300
+        max: 2000
         severity:
-          green: 18
-          yellow: 24
-          red: 30
+          green: 800
+          yellow: 1200
+          red: 1600
 
-      - type: gauge
-        title: Humidité
-        entity: sensor.vmi_humidity
-        min: 0
-        max: 100
-        severity:
-          green: 40
-          yellow: 60
-          red: 80
+      - type: entities
+        title: Pilotage
+        show_header_toggle: false
+        entities:
+          - entity: select.vmi_mode
+            name: Mode
+          - entity: number.vmi_setpoint
+            name: Consigne
 
       - type: statistics-graph
         title: Historique température
@@ -40,3 +73,10 @@ views:
         period: day
         stat_types:
           - mean
+
+      - type: history-graph
+        title: Historique sur 24 h
+        entities:
+          - sensor.vmi_humidity
+          - sensor.vmi_temperature
+        hours_to_show: 24
