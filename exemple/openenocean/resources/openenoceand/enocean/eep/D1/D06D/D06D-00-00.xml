@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<telegrams version="2.6.4" major_version="2" minor_version="6" revision="4">
+	<telegram rorg="0xD106D" type="MSC" description="MSC Telegram Nexelec">
+		<profiles func="0x00" description="0x00">
+			<profile type="0x00" description="0x00">
+				<command description="command indentifier" shortcut="CMD" offset="16" size="8">
+					<item description="Push Button" value="1" />
+					<item description="Air quality based on Temperature and humidity" value="2" />
+					<item description="Air Quality based on CO2, temperature and humidity" value="3" />
+					<item description="Indoor Air Quality based on CO, temperature and humidity" value="4" />
+				</command>
+				<data command="1" bits="6">
+					<enum description="Command indentifier" shortcut="CMD" offset="16" size="8">
+						<rangeitem description="Command ID {value}" start="0" end="13" />
+					</enum>
+					<enum description="Push Button" shortcut="BUTT" offset="24" size="2">
+						<item description="Short Press" value="0" />
+						<item description="3x Press" value="1" />
+						<item description="6x Press" value="2" />
+						<item description="Long Press" value="3" />
+					</enum>
+				</data>
+				<data command="2" bits="8">
+					<enum description="Command indentifier" shortcut="CMD" offset="16" size="8">
+						<rangeitem description="Command ID {value}" start="0" end="13" />
+					</enum>
+					<enum description="IAQ_GLOBAL" shortcut="IAQ_GLOBAL" offset="24" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+					<enum description="IAQ_SOURCE" shortcut="IAQ_SOURCE" offset="27" size="4">
+						<item description="All" value="0" />
+						<item description="Dryness indicator" value="1" />
+						<item description="Mould indicator" value="2" />
+						<item description="Dust mites indicator" value="3" />
+						<item description="CO" value="4" />
+						<item description="CO2" value="5" />
+						<item description="PM1.0" value="6" />
+						<item description="PM2.5" value="7" />
+						<item description="PM10" value="8" />
+						<item description="Error" value="15" />
+					</enum>
+					<enum description="IAQ_DRY" shortcut="IAQ_DRY" offset="31" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+					<enum description="IAQ_MOULD" shortcut="IAQ_MOULD" offset="34" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+					<enum description="IAQ_DM" shortcut="IAQ_DM" offset="37" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+					<enum description="HCI" shortcut="HCI" offset="40" size="2">
+						<item description="Good" value="0" />
+						<item description="Fair" value="1" />
+						<item description="Poor" value="2" />
+						<item description="Bad" value="3" />
+					</enum>
+				</data>
+				<data command="3" bits="8">
+					<enum description="Command indentifier" shortcut="CMD" offset="16" size="8">
+						<rangeitem description="Command ID {value}" start="0" end="13" />
+					</enum>
+					<enum description="IAQ_GLOBAL" shortcut="IAQ_GLOBAL" offset="24" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+					<enum description="IAQ_SOURCE" shortcut="IAQ_SOURCE" offset="27" size="4">
+						<item description="All" value="0" />
+						<item description="Dryness indicator" value="1" />
+						<item description="Mould indicator" value="2" />
+						<item description="Dust mites indicator" value="3" />
+						<item description="CO" value="4" />
+						<item description="CO2" value="5" />
+						<item description="PM1.0" value="6" />
+						<item description="PM2.5" value="7" />
+						<item description="PM10" value="8" />
+						<item description="Error" value="15" />
+					</enum>
+					<enum description="IAQ_DRY" shortcut="IAQ_DRY" offset="31" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+					<enum description="IAQ_MOULD" shortcut="IAQ_MOULD" offset="34" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+					<enum description="IAQ_DM" shortcut="IAQ_DM" offset="37" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+					<enum description="HCI" shortcut="HCI" offset="40" size="2">
+						<item description="Good" value="0" />
+						<item description="Fair" value="1" />
+						<item description="Poor" value="2" />
+						<item description="Bad" value="3" />
+					</enum>
+					<enum description="IAQ_CO2" shortcut="IAQ_CO2" offset="42" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+				</data>
+				<data command="4" bits="8">
+					<enum description="Command indentifier" shortcut="CMD" offset="16" size="8">
+						<rangeitem description="Command ID {value}" start="0" end="13" />
+					</enum>
+					<enum description="IAQ_GLOBAL" shortcut="IAQ_GLOBAL" offset="24" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+					<enum description="IAQ_SOURCE" shortcut="IAQ_SOURCE" offset="27" size="4">
+						<item description="All" value="0" />
+						<item description="Dryness indicator" value="1" />
+						<item description="Mould indicator" value="2" />
+						<item description="Dust mites indicator" value="3" />
+						<item description="CO" value="4" />
+						<item description="CO2" value="5" />
+						<item description="PM1.0" value="6" />
+						<item description="PM2.5" value="7" />
+						<item description="PM10" value="8" />
+						<item description="Error" value="15" />
+					</enum>
+					<enum description="IAQ_DRY" shortcut="IAQ_DRY" offset="31" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+					<enum description="IAQ_MOULD" shortcut="IAQ_MOULD" offset="34" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+					<enum description="IAQ_DM" shortcut="IAQ_DM" offset="37" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+					<enum description="HCI" shortcut="HCI" offset="40" size="2">
+						<item description="Good" value="0" />
+						<item description="Fair" value="1" />
+						<item description="Poor" value="2" />
+						<item description="Bad" value="3" />
+					</enum>
+					<enum description="IAQ_CO" shortcut="IAQ_CO" offset="42" size="3">
+						<item description="Excellent" value="0" />
+						<item description="Good" value="1" />
+						<item description="Fair" value="2" />
+						<item description="Poor" value="3" />
+						<item description="Bad" value="4" />
+						<item description="Error" value="7" />
+					</enum>
+				</data>
+			</profile>
+		</profiles>
+	</telegram>
+</telegrams>

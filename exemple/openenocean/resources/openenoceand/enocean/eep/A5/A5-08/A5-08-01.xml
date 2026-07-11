@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<telegrams version="2.6.4" major_version="2" minor_version="6" revision="4">
+	<telegram rorg="0xA5" type="4BS" description="4BS Telegram">
+		<profiles func="0x08" description="Light, Temperature and Occupancy Sensor">
+			<profile type="0x01" description="Range 0 to 510lx and 0 to 51 deg and Occupancy Button">
+				<data>
+					<value description="Supply voltage (linear)" shortcut="SVC" offset="0" size="8" unit="V">
+						<range>
+							<min>0</min>
+							<max>255</max>
+						</range>
+						<scale>
+							<min>0.000000</min>
+							<max>5.000000</max>
+						</scale>
+					</value>
+					<value description="Illumination" shortcut="ILL" offset="8" size="8" unit="lx">
+						<range>
+							<min>0</min>
+							<max>255</max>
+						</range>
+						<scale>
+							<min>0.000000</min>
+							<max>510.000000</max>
+						</scale>
+					</value>
+					<value description="Temperature" shortcut="TMP" offset="16" size="8" unit="°C">
+						<range>
+							<min>0</min>
+							<max>255</max>
+						</range>
+						<scale>
+							<min>0.000000</min>
+							<max>51.000000</max>
+						</scale>
+					</value>
+					<enum shortcut="LRNB" description="Learn Bit" offset="28" size="1">
+						<item description="Teach-In" value="0" />
+						<item description="Data" value="1" />
+					</enum>
+					<enum description="PIR Status" shortcut="PIRS" offset="30" size="1">
+						<item description="PIR On" value="0" />
+						<item description="PIR Off" value="1" />
+					</enum>
+					<enum description="Occupancy Button" shortcut="OCC" offset="31" size="1">
+						<item description="Button Pressed" value="0" />
+						<item description="Button Released" value="1" />
+					</enum>
+				</data>
+			</profile>
+		</profiles>
+	</telegram>
+</telegrams>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<telegrams version="2.6.4" major_version="2" minor_version="6" revision="4">
+	<telegram rorg="0xA5" type="4BS" description="4BS Telegram">
+		<profiles func="0x3f" description="Universal">
+			<profile type="0x7f" description="Universal">
+				<data>
+					<value description="Part 1" shortcut="P1" offset="0" size="8" unit="">
+						<range>
+							<min>0</min>
+							<max>255</max>
+						</range>
+						<scale>
+							<min>0</min>
+							<max>255</max>
+						</scale>
+					</value>
+					<value description="Part 2" shortcut="P2" offset="8" size="8" unit="">
+						<range>
+							<min>0</min>
+							<max>255</max>
+						</range>
+						<scale>
+							<min>0</min>
+							<max>255</max>
+						</scale>
+					</value>
+					<value description="Part 3" shortcut="P3" offset="16" size="8" unit="">
+						<range>
+							<min>0</min>
+							<max>255</max>
+						</range>
+						<scale>
+							<min>0</min>
+							<max>255</max>
+						</scale>
+					</value>
+					<enum shortcut="LRNB" description="Learn Bit" offset="28" size="1">
+						<item description="Teach-In" value="0" />
+						<item description="Data" value="1" />
+					</enum>
+				</data>
+			</profile>
+		</profiles>
+	</telegram>
+</telegrams>

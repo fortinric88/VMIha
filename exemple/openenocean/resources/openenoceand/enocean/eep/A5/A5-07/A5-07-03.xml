@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<telegrams version="2.6.4" major_version="2" minor_version="6" revision="4">
+	<telegram rorg="0xA5" type="4BS" description="4BS Telegram">
+		<profiles func="0x07" description="Occupancy Sensor">
+			<profile type="0x03" description="Occupancy with Supply voltage monitor and 10-bit illumination measurement">
+				<data>
+					<value description="Supply voltage (linear)" shortcut="SVC" offset="0" size="8" unit="V">
+						<range>
+							<min>0</min>
+							<max>255</max>
+						</range>
+						<scale>
+							<min>0.000000</min>
+							<max>5.000000</max>
+						</scale>
+					</value>
+					<value description="Illumination" shortcut="ILL" offset="8" size="10" unit="lux">
+						<range>
+							<min>0</min>
+							<max>1000</max>
+						</range>
+						<scale>
+							<min>0.000000</min>
+							<max>1000.000000</max>
+						</scale>
+					</value>
+					<enum description="PIR status" shortcut="PIRS" offset="24" size="1">
+						<item description="Motion detected" value="1" />
+						<item description="Uncertain of occupancy status" value="0" />
+					</enum>
+					<enum shortcut="LRNB" description="Learn Bit" offset="28" size="1">
+						<item description="Teach-In" value="0" />
+						<item description="Data" value="1" />
+					</enum>
+				</data>
+			</profile>
+		</profiles>
+	</telegram>
+</telegrams>

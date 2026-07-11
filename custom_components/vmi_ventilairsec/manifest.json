@@ -1,0 +1,11 @@
+{
+  "domain": "vmi_ventilairsec",
+  "name": "VMI Ventilairsec",
+  "codeowners": ["@yourname"],
+  "config_flow": true,
+  "documentation": "https://github.com/yourname/vmi_ventilairsec",
+  "integration_type": "device",
+  "iot_class": "local_push",
+  "requirements": [],
+  "version": "0.1.0"
+}

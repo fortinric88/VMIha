@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<telegrams version="2.6.4" major_version="2" minor_version="6" revision="4">
+	<telegram rorg="0xA5" type="4BS" description="4BS Telegram">
+		<profiles func="0x38" description="Central Command ">
+			<profile type="0x08" description="Gateway">
+				<command description="command indentifier" shortcut="CMD" offset="0" size="8">
+					<item description="Switching" value="1" />
+					<item description="Dimming" value="2" />
+					<!-- <item description="Actuator Status Query" value="3" /> -->
+					<!-- <item description="Actuator Status Response" value="4" /> -->
+					<!-- <item description="Actuator Set Measurement" value="5" /> -->
+					<!-- <item description="Actuator Measurement Query" value="6" /> -->
+					<item description="Blind Central Command" value="7" />
+					<!-- <item description="Actuator Set Pilot Wire Mode" value="8" /> -->
+					<!-- <item description="Actuator Pilot Wire Mode Query" value="9" /> -->
+					<!-- <item description="Actuator Pilot Wire Mode Response" value="10" /> -->
+					<!-- <item description="Actuator Set External Interface Settings" value="11" /> -->
+					<!-- <item description="Actuator External Interface Settings Query" value="12" /> -->
+					<!-- <item description="Actuator External Interface Settings Response" value="13" /> -->
+				</command>
+				<data command="1" bits="3">
+					<enum description="Command indentifier" shortcut="CMD" offset="0" size="8">
+						<rangeitem description="Command ID {value}" start="0" end="13" />
+					</enum>
+					<value description="Time" shortcut="TIM " offset="8" size="16" unit="s">
+						<range>
+							<min>1</min>
+							<max>65535</max>
+						</range>
+						<scale>
+							<min>0.1</min>
+							<max>6553.5</max>
+						</scale>
+					</value>
+					<enum shortcut="LRNB" description="Learn Bit" offset="28" size="1">
+						<item description="Teach-In" value="0" />
+						<item description="Data" value="1" />
+					</enum>
+					<enum shortcut="LCK" description="Lock/Unlock" offset="29" size="1">
+						<item description="Unlock" value="0" />
+						<item description="Lock" value="1" />
+					</enum>
+					<enum shortcut="DEL" description="Delay or duration" offset="30" size="1">
+						<item description="Duration" value="0" />
+						<item description="Delay" value="1" />
+					</enum>
+					<enum shortcut="SW" description="Switching Command" offset="31" size="1">
+						<item description="Off" value="0" />
+						<item description="On" value="1" />
+					</enum>
+				</data>
+				<data command="2" bits="3">
+					<enum description="Command indentifier" shortcut="CMD" offset="0" size="8">
+						<rangeitem description="Command ID {value}" start="0" end="13" />
+					</enum>
+					<value description="Dimming Value" shortcut="EDIM" offset="8" size="8" unit="%">
+						<range>
+							<min>0</min>
+							<max>100</max>
+						</range>
+						<scale>
+							<min>0</min>
+							<max>100</max>
+						</scale>
+					</value>
+					<value description="Ramping Time" shortcut="RMP" offset="16" size="8" unit="s">
+						<range>
+							<min>0</min>
+							<max>255</max>
+						</range>
+						<scale>
+							<min>0</min>
+							<max>255</max>
+						</scale>
+					</value>
+					<enum shortcut="LRNB" description="Learn Bit" offset="28" size="1">
+						<item description="Teach-In" value="0" />
+						<item description="Data" value="1" />
+					</enum>
+					<enum shortcut="EDIMR" description="Dimming Range" offset="29" size="1">
+						<item description="Absolute" value="0" />
+						<item description="Relative" value="1" />
+					</enum>
+					<enum shortcut="STR" description="Store final Value" offset="30" size="1">
+						<item description="No" value="0" />
+						<item description="Yes" value="1" />
+					</enum>
+					<enum shortcut="SW" description="Switching Command" offset="31" size="1">
+						<item description="Off" value="0" />
+						<item description="On" value="1" />
+					</enum>
+				</data>
+				<data command="7" bits="3">
+					<enum description="Command indentifier" shortcut="CMD" offset="0" size="8">
+						<rangeitem description="Command ID {value}" start="0" end="13" />
+					</enum>
+					<enum description="Parameter 1" shortcut="P1" offset="8" size="8" unit="">
+						<rangeitem description="Depending on func 0 255" value="4" start="0" end="255" />
+					</enum>
+					<enum description="Parameter 2" shortcut="P2" offset="8" size="16" unit="">
+						<rangeitem description="Depending on func 0 255" value="4" start="0" end="255" />
+					</enum>
+					<enum description="Function" shortcut="FUNC" offset="24" size="4">
+						<item description="Do nothing status request" value="0" />
+						<item description="Blind stops" value="1" />
+						<item description="Blind opens" value="2" />
+						<item description="Blind closes" value="3" />
+						<item description="Blind drives to position with angle value" value="4" />
+						<item description="Blind opens for time (position value) and angle (angle value)" value="5" />
+						<item description="Blind closes for time (position value) and angle (angle value)" value="6" />
+						<item description="Set Runtime parameters" value="7" />
+						<item description="Set angle configuration " value="8" />
+						<item description="Set Min, Max values" value="9" />
+						<item description="Set slat angle for SHUT and OPEN position" value="10" />
+						<item description="Set position logic" value="10" />
+					</enum>
+					<enum shortcut="LRNB" description="Learn Bit" offset="28" size="1">
+						<item description="Teach-In" value="0" />
+						<item description="Data" value="1" />
+					</enum>
+					<enum shortcut="SSF" description="Send status flag" offset="29" size="1">
+						<item description="Send new status of device" value="0" />
+						<item description="Send no status" value="1" />
+					</enum>
+					<enum shortcut="PAF" description="Pos. and Angle flag" offset="30" size="1">
+						<item description="No Angle and position value available" value="0" />
+						<item description="Angle and position value available" value="1" />
+					</enum>
+					<enum shortcut="SMF" description="Service Mode Flag" offset="31" size="1">
+						<item description="Normal operation" value="0" />
+						<item description="Service mode: The module disables all senders, except this sender, which has set the service mode" value="1" />
+					</enum>
+				</data>
+			</profile>
+		</profiles>
+	</telegram>
+</telegrams>

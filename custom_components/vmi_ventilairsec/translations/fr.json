@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configurer VMI Ventilairsec",
+        "description": "Saisissez le port série EnOcean utilisé par l’intégration",
+        "data": {
+          "serial_port": "Port série"
+        }
+      }
+    }
+  }
+}

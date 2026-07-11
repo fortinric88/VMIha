@@ -1,0 +1,7 @@
+# Example snippet for Home Assistant configuration.yaml
+# Add this only if you want to expose the custom integration via a manual YAML setup.
+
+logger:
+  default: warning
+  logs:
+    custom_components.vmi_ventilairsec: debug

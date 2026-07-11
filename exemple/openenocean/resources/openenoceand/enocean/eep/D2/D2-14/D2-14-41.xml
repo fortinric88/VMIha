@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<telegrams version="2.6.4" major_version="2" minor_version="6" revision="4">
+	<telegram rorg="0xD2" type="VLD" description="VLD Telegram">
+		<profiles func="0x14" description="Multi function sensors">
+			<profile type="0x41" description="Indoor -Temperature, Humidity XYZ Acceleration, Illumination Sensor, Window Contact">
+				<data>
+					<value description="Temperature" shortcut="TMP" offset="0" size="10" unit="°C">
+						<range>
+							<min>0</min>
+							<max>1000</max>
+						</range>
+						<scale>
+							<min>-40</min>
+							<max>60</max>
+						</scale>
+						<item description="Out of range negative" value="1021" />
+						<item description="Out of range positive" value="1022" />
+						<item description="Error" value="1023" />
+					</value>
+					<value description="Humidity" shortcut="HUM" offset="10" size="8" unit="%">
+						<range>
+							<min>0</min>
+							<max>200</max>
+						</range>
+						<scale>
+							<min>0</min>
+							<max>100</max>
+						</scale>
+						<item description="Supported invalid" value="254" />
+						<item description="Not Supported" value="255" />
+					</value>
+					<value description="Illumination" shortcut="ILL" offset="18" size="17" unit="lx">
+						<range>
+							<min>0</min>
+							<max>100000</max>
+						</range>
+						<scale>
+							<min>0</min>
+							<max>100000</max>
+						</scale>
+						<item description="Error" value="131071" />
+					</value>
+					<enum description="Acceleration Status" shortcut="ACLS" offset="35" size="2">
+						<item description="Periodic Update" value="0" />
+						<item description="Threshold 1 exceeded" value="1" />
+						<item description="Threshold 2 exceeded" value="2" />
+					</enum>
+					<value description="AccelerationX" shortcut="ACLX" offset="37" size="10" unit="g">
+						<range>
+							<min>0</min>
+							<max>1000</max>
+						</range>
+						<scale>
+							<min>-2.5</min>
+							<max>2.5</max>
+						</scale>
+						<item description="Out of range negative" value="1021" />
+						<item description="Out of range positive" value="1022" />
+						<item description="Error" value="1023" />
+					</value>
+					<value description="AccelerationY" shortcut="ACLY" offset="47" size="10" unit="g">
+						<range>
+							<min>0</min>
+							<max>1000</max>
+						</range>
+						<scale>
+							<min>-2.5</min>
+							<max>2.5</max>
+						</scale>
+						<item description="Out of range negative" value="1021" />
+						<item description="Out of range positive" value="1022" />
+						<item description="Error" value="1023" />
+					</value>
+					<value description="AccelerationZ" shortcut="ACLZ" offset="57" size="10" unit="g">
+						<range>
+							<min>0</min>
+							<max>1000</max>
+						</range>
+						<scale>
+							<min>-2.5</min>
+							<max>2.5</max>
+						</scale>
+						<item description="Out of range negative" value="1021" />
+						<item description="Out of range positive" value="1022" />
+						<item description="Error" value="1023" />
+					</value>
+					<enum description="Contact" shortcut="CONT" offset="67" size="1">
+						<item description="Open" value="0" />
+						<item description="Close" value="1" />
+					</enum>
+				</data>
+			</profile>
+		</profiles>
+	</telegram>
+</telegrams>
