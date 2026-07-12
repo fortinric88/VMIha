@@ -23,6 +23,19 @@ from .enocean_handler import parse_d1079_payload
 _LOGGER = logging.getLogger(__name__)
 
 
+def _guess_device_slug(payload: str) -> str:
+    lower = payload.lower()
+    if "d1079" in lower or payload.startswith("0x0421574f"):
+        return "vmi_purevent"
+    if payload.startswith("0x0422407d"):
+        return "vmi_assistant_ventilairsec"
+    if "a5_09_04" in lower or payload.startswith("0x81003227"):
+        return "co2_sensor"
+    if "a5_04_01" in lower or payload.startswith("0x810054f5"):
+        return "temperature_humidity_sensor"
+    return "vmi_purevent"
+
+
 class EnOceanSerialListener:
     """Background listener reading a serial port for EnOcean telegrams."""
 
@@ -92,12 +105,16 @@ class EnOceanSerialListener:
         if self.callback is None:
             return
         try:
-            # Best-effort parse: if a token resembles a VMI payload, hand it to the parser.
-            parts = payload.split()
-            for part in parts:
-                if part.startswith("0x") and len(part) >= 10:
-                    self.callback({"raw": part, "parsed": parse_d1079_payload(part, func="01", device_type="00")})
-                    return
-            self.callback({"raw": payload, "parsed": {}})
+            token = payload.strip()
+            if token.startswith("0x"):
+                if token.startswith("0x0422407d"):
+                    parsed = parse_d1079_payload(token, func="00", device_type="00")
+                    device_slug = "vmi_assistant_ventilairsec"
+                else:
+                    parsed = parse_d1079_payload(token, func="01", device_type="00")
+                    device_slug = _guess_device_slug(token)
+                self.callback({"raw": token, "parsed": parsed, "device_slug": device_slug})
+                return
+            self.callback({"raw": payload, "parsed": {}, "device_slug": _guess_device_slug(payload)})
         except Exception as exc:  # pragma: no cover
             _LOGGER.exception("Unable to parse EnOcean line %s: %s", payload, exc)
