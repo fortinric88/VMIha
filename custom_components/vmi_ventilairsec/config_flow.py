@@ -3,18 +3,15 @@ from __future__ import annotations
 
 import voluptuous as vol
 from homeassistant import config_entries
-from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import callback
 
 from . import DOMAIN
 
 
-@config_entries.HANDLERS.register(DOMAIN)
-class VmiVentilairsecConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-    """Handle a config flow for the integration."""
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+    """Handle a config flow for the integration using the standard handler name."""
 
     VERSION = 1
-    MINOR_VERSION = 1
 
     @staticmethod
     @callback

@@ -11,8 +11,6 @@ except ImportError:  # pragma: no cover - used in local unit tests
     HomeAssistant = object  # type: ignore[assignment]
     ConfigEntry = object  # type: ignore[assignment]
 
-from .enocean_listener import EnOceanSerialListener
-
 DOMAIN = "vmi_ventilairsec"
 
 
@@ -84,8 +82,16 @@ def get_device_specs() -> list[dict[str, Any]]:
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up the VMI Ventilairsec integration from a config entry."""
-    listener = EnOceanSerialListener(port=entry.options.get("serial_port", "/dev/ttyS2"))
-    listener.start()
+    # Import listener lazily to avoid raising import errors during package import
+    try:
+        from .enocean_listener import EnOceanSerialListener
+    except Exception:
+        EnOceanSerialListener = None  # type: ignore
+
+    listener = None
+    if EnOceanSerialListener is not None:
+        listener = EnOceanSerialListener(port=entry.options.get("serial_port", "/dev/ttyS2"))
+        listener.start()
 
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = {"entry": entry, "listener": listener}
     await hass.config_entries.async_forward_entry_setups(entry, ["sensor", "select", "number"])
