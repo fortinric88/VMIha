@@ -16,6 +16,11 @@ from .enocean_listener import EnOceanSerialListener
 DOMAIN = "vmi_ventilairsec"
 
 
+async def async_setup(hass: HomeAssistant, config: dict[str, Any]) -> bool:
+    """Set up the VMI Ventilairsec component."""
+    return True
+
+
 def get_device_specs() -> list[dict[str, Any]]:
     """Return the device layout described in the Ventilairsec plugin backup."""
     return [
