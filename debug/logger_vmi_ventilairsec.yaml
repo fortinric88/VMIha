@@ -1,0 +1,6 @@
+logger:
+  default: info
+  logs:
+    custom_components.vmi_ventilairsec: debug
+    custom_components.vmi_ventilairsec.enocean_listener: debug
+    custom_components.vmi_ventilairsec.enocean_handler: debug

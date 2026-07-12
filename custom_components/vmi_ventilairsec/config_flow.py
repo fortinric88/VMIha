@@ -1,7 +1,11 @@
 """Config flow for VMI Ventilairsec."""
 from __future__ import annotations
 
-import voluptuous as vol
+try:
+    import voluptuous as vol
+except Exception:  # pragma: no cover - protect import-time in environments without voluptuous
+    vol = None  # type: ignore
+
 from homeassistant import config_entries
 from homeassistant.core import callback
 
@@ -22,6 +26,10 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             return self.async_create_entry(title="VMI Ventilairsec", data={"serial_port": user_input["serial_port"]})
 
+        if vol is None:
+            # voluptuous missing — show an empty form (user can edit options later)
+            return self.async_show_form(step_id="user")
+
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema({
@@ -37,6 +45,9 @@ class VmiVentilairsecOptionsFlow(config_entries.OptionsFlow):
     async def async_step_init(self, user_input=None):
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
+
+        if vol is None:
+            return self.async_show_form(step_id="init")
 
         return self.async_show_form(
             step_id="init",
