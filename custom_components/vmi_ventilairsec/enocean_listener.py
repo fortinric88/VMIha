@@ -52,10 +52,12 @@ class EnOceanSerialListener:
         if serial is None:
             _LOGGER.warning("pyserial is not installed; serial listening is disabled")
             return
+        _LOGGER.debug("Starting EnOcean listener on port %s", self.port)
         self._thread = threading.Thread(target=self._run, daemon=True)
         self._thread.start()
 
     def stop(self) -> None:
+        _LOGGER.debug("Stopping EnOcean listener")
         self._stop_event.set()
         if self._thread:
             self._thread.join(timeout=2)
@@ -77,6 +79,7 @@ class EnOceanSerialListener:
                 if self._serial.in_waiting > 0:
                     data = self._serial.read(self._serial.in_waiting)
                     if data:
+                        _LOGGER.debug("Received %d serial bytes", len(data))
                         self._handle_bytes(data)
                 else:
                     self._stop_event.wait(0.1)
@@ -89,17 +92,19 @@ class EnOceanSerialListener:
         if not text:
             return
 
-        for line in text.splitlines():
-            line = line.strip()
-            if not line:
-                continue
+        lines = [line.strip() for line in text.splitlines() if line.strip()]
+        _LOGGER.debug("Decoded %d serial lines", len(lines))
+        for line in lines:
             self._process_line(line)
 
     def _process_line(self, line: str) -> None:
+        _LOGGER.debug("Processing EnOcean line: %s", line)
         lower = line.lower()
         if "d1079" in lower or "a5-09-04" in lower or "a5-04-01" in lower:
             payload = line
             self._dispatch_payload(payload)
+        else:
+            _LOGGER.debug("Ignored EnOcean line, not matching known device patterns: %s", line)
 
     def _dispatch_payload(self, payload: str) -> None:
         if self.callback is None:
@@ -118,3 +123,5 @@ class EnOceanSerialListener:
             self.callback({"raw": payload, "parsed": {}, "device_slug": _guess_device_slug(payload)})
         except Exception as exc:  # pragma: no cover
             _LOGGER.exception("Unable to parse EnOcean line %s: %s", payload, exc)
+        else:
+            _LOGGER.debug("Dispatched EnOcean payload %s for %s: %s", token, device_slug, parsed)

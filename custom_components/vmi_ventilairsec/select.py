@@ -25,7 +25,7 @@ class VmiDeviceSelect(SelectEntity):
 
     def __init__(self, entry_id: str, device_name: str, key: str, name: str, data_store: VmiDataStore) -> None:
         self._key = key
-        self._device_slug = device_name.lower().replace(" ", "_")
+        self._device_slug = device_name.lower().replace(" ", "_").replace("/", "_")
         self._data_store = data_store
         self._attr_unique_id = f"{entry_id}_{self._device_slug}_{key}"
         self._attr_name = name
@@ -35,7 +35,6 @@ class VmiDeviceSelect(SelectEntity):
             "manufacturer": "VMI",
             "model": device_name,
         }
-        self.entity_id = f"select.{self._device_slug}_{key}"
 
     async def async_added_to_hass(self) -> None:
         self._data_store.register_entity(self)
