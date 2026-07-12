@@ -14,22 +14,26 @@ views:
         title: État principal
         show_header_toggle: false
         entities:
-          - entity: sensor.vmi_temperature
-            name: Température
-          - entity: sensor.vmi_humidity
-            name: Humidité
-          - entity: sensor.vmi_co2
+          - entity: sensor.co2_sensor_co2
             name: CO2
-          - entity: select.vmi_mode
+          - entity: sensor.co2_sensor_temperature
+            name: Température capteur CO2
+          - entity: sensor.temperature_humidity_sensor_temperature
+            name: Température capteur TH
+          - entity: sensor.temperature_humidity_sensor_humidity
+            name: Humidité capteur TH
+          - entity: sensor.vmi_purevent_mode
+            name: Mode Purevent
+          - entity: select.vmi_purevent_mode
             name: Mode de ventilation
-          - entity: number.vmi_setpoint
-            name: Consigne de température
+          - entity: number.vmi_purevent_heating_setpoint
+            name: Consigne chauffage
 
       - type: horizontal-stack
         cards:
           - type: gauge
             title: Température
-            entity: sensor.vmi_temperature
+            entity: sensor.co2_sensor_temperature
             min: 10
             max: 35
             severity:
@@ -39,7 +43,7 @@ views:
 
           - type: gauge
             title: Humidité
-            entity: sensor.vmi_humidity
+            entity: sensor.temperature_humidity_sensor_humidity
             min: 0
             max: 100
             severity:
@@ -49,7 +53,7 @@ views:
 
       - type: gauge
         title: CO2
-        entity: sensor.vmi_co2
+        entity: sensor.co2_sensor_co2
         min: 300
         max: 2000
         severity:
@@ -61,15 +65,15 @@ views:
         title: Pilotage
         show_header_toggle: false
         entities:
-          - entity: select.vmi_mode
+          - entity: select.vmi_purevent_mode
             name: Mode
-          - entity: number.vmi_setpoint
-            name: Consigne
+          - entity: number.vmi_purevent_heating_setpoint
+            name: Consigne chauffage
 
       - type: statistics-graph
         title: Historique température
         entities:
-          - sensor.vmi_temperature
+          - sensor.co2_sensor_temperature
         period: day
         stat_types:
           - mean
@@ -77,6 +81,6 @@ views:
       - type: history-graph
         title: Historique sur 24 h
         entities:
-          - sensor.vmi_humidity
-          - sensor.vmi_temperature
+          - sensor.temperature_humidity_sensor_humidity
+          - sensor.co2_sensor_temperature
         hours_to_show: 24

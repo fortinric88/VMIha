@@ -1,0 +1,85 @@
+title: VMI Ventilairsec
+views:
+  - title: Dashboard Jeedom
+    path: vmi-jeedom
+    icon: mdi:fan
+    cards:
+      - type: markdown
+        title: Ventilairsec
+        content: >-
+          ## Tableau de bord VMI Ventilairsec
+          Vue inspirée du plugin Jeedom, avec les 4 appareils séparés.
+
+      - type: entities
+        title: CO2 Sensor
+        show_header_toggle: false
+        entities:
+          - entity: sensor.co2_sensor_co2
+            name: CO2
+          - entity: sensor.co2_sensor_temperature
+            name: Température
+
+      - type: entities
+        title: Temperature/Humidity Sensor
+        show_header_toggle: false
+        entities:
+          - entity: sensor.temperature_humidity_sensor_temperature
+            name: Température
+          - entity: sensor.temperature_humidity_sensor_humidity
+            name: Humidité
+
+      - type: entities
+        title: VMI Purevent
+        show_header_toggle: false
+        entities:
+          - entity: sensor.vmi_purevent_mode
+            name: Mode
+          - entity: sensor.vmi_purevent_upstream_temperature
+            name: Température amont
+          - entity: sensor.vmi_purevent_downstream_temperature
+            name: Température aval
+          - entity: sensor.vmi_purevent_heating_setpoint
+            name: Consigne chauffage
+          - entity: select.vmi_purevent_mode
+            name: Mode de ventilation
+          - entity: number.vmi_purevent_heating_setpoint
+            name: Consigne chauffage
+
+      - type: entities
+        title: VMI Assistant Ventilairsec
+        show_header_toggle: false
+        entities:
+          - entity: sensor.vmi_assistant_ventilairsec_temperature
+            name: Température
+          - entity: sensor.vmi_assistant_ventilairsec_humidity
+            name: Humidité
+
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            title: CO2
+            entity: sensor.co2_sensor_co2
+            min: 300
+            max: 2000
+            severity:
+              green: 800
+              yellow: 1200
+              red: 1600
+
+          - type: gauge
+            title: Humidité
+            entity: sensor.temperature_humidity_sensor_humidity
+            min: 0
+            max: 100
+            severity:
+              green: 40
+              yellow: 60
+              red: 80
+
+      - type: history-graph
+        title: Historique des mesures
+        entities:
+          - sensor.co2_sensor_temperature
+          - sensor.temperature_humidity_sensor_humidity
+          - sensor.vmi_purevent_upstream_temperature
+        hours_to_show: 24
